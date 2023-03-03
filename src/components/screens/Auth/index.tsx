@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../utils/CONSTANTS";
-import { Container } from "./style";
+import { Container, Wrapper } from "./style";
 
 export default function Auth() {
 
@@ -20,7 +20,9 @@ export default function Auth() {
 
     return (
         <Container>
-            <Outlet />
+            <Wrapper>
+                <Outlet />
+            </Wrapper>
         </Container>
     );
 }
