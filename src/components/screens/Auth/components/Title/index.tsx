@@ -1,10 +1,15 @@
+
 import { TitleWrapper } from "./style";
 
 
-export default function Title() {
+type Props = {
+    children: string;
+}
+
+export default function Title(props: Props) {
     return (
         <TitleWrapper>
-            
+            {props.children}
         </TitleWrapper>
     );
 }
