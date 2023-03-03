@@ -9,6 +9,9 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
+    padding: calc(.5rem + 1vw);
+    width: calc(25rem + 17vw);
+    max-width: 100vw;
     display: flex;
     flex-direction: column;
 `;
