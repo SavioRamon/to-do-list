@@ -8,7 +8,7 @@ type AuthTypes = {
     error: boolean;
     signUpReq: (data: { email: string; password: string; }) => void;
     signInReq: (data: { email: string; password: string; }) => void;
-    logoutReq: () => void;
+    signOutReq: () => void;
     autoLoginReq: () => void;
 }
 
@@ -71,8 +71,19 @@ export default function AuthProvider(props: Props) {
         }
     }
 
-    async function logoutReq() {
-        console.log("logout");
+    async function signOutReq() {
+        const signOutSuccess: boolean = await authService.userSignOut();
+        if(signOutSuccess) {
+            dispatch({
+                type: "signOutSuccess",
+                payload: null
+            })
+        } else {
+            dispatch({
+                type: "signOutError",
+                payload: null
+            })
+        }
     }
 
     async function autoLoginReq() {
@@ -85,7 +96,7 @@ export default function AuthProvider(props: Props) {
             ...auth,
             signUpReq,
             signInReq,
-            logoutReq,
+            signOutReq,
             autoLoginReq
         }}>
             {props.children}
@@ -122,12 +133,12 @@ function authReducer(state: State, action: Action) {
             return state;
         }
 
-        // LOGOUT
-        case "logoutSuccess": {
+        // SIGN OUT
+        case "signOutSuccess": {
             return state;
         }
 
-        case "logoutError": {
+        case "signOutError": {
             return state;
         }
 

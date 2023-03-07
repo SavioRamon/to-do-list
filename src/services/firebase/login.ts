@@ -34,10 +34,23 @@ export const authService = {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             return user;
+
         } catch(error: any) {
             const errorCode = error.code;
             const errorMessage = error.message;
             return null;
         }
     },
+
+    async userSignOut() {
+        try {
+            signOut(auth);
+            return true;
+            
+        } catch(error: any) {
+            const code = error.code;
+            const message = error.message;
+            return false;
+        }
+    }
 }
