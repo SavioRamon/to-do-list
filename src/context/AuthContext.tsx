@@ -7,7 +7,7 @@ type AuthTypes = {
     load: boolean;
     error: boolean;
     signUpReq: (data: { email: string; password: string; }) => void;
-    loginReq: (data: { email: string; password: string; }) => void;
+    signInReq: (data: { email: string; password: string; }) => void;
     logoutReq: () => void;
     autoLoginReq: () => void;
 }
@@ -56,16 +56,16 @@ export default function AuthProvider(props: Props) {
         }
     }
 
-    async function loginReq(data: { email: string; password: string; }) {
-        const user: User | null = await authService.userLogin(data);
+    async function signInReq(data: { email: string; password: string; }) {
+        const user: User | null = await authService.userSignIn(data);
         if(user) {
             dispatch({
-                type: "loginSuccess",
+                type: "signinSuccess",
                 payload: user,
             });
         } else {
             dispatch({
-                type: "loginError",
+                type: "signinError",
                 payload: null
             })
         }
@@ -84,7 +84,7 @@ export default function AuthProvider(props: Props) {
         <AccountContext.Provider value={{
             ...auth,
             signUpReq,
-            loginReq,
+            signInReq,
             logoutReq,
             autoLoginReq
         }}>
@@ -113,12 +113,12 @@ function authReducer(state: State, action: Action) {
             };
         }
 
-        // LOGIN
-        case "loginSuccess": {
+        // SIGN IN
+        case "signinSuccess": {
             return state;
         }
 
-        case "loginError": {
+        case "signinError": {
             return state;
         }
 

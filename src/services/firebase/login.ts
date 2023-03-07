@@ -2,8 +2,10 @@
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signOut
 } from "firebase/auth";
+
 import { app } from ".";
 
 const auth = getAuth(app);
@@ -27,7 +29,7 @@ export const authService = {
         }
     },
 
-    async userLogin({ email, password }: AuthData) {
+    async userSignIn({ email, password }: AuthData) {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
@@ -37,5 +39,5 @@ export const authService = {
             const errorMessage = error.message;
             return null;
         }
-    }
+    },
 }
