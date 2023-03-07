@@ -45,12 +45,12 @@ export default function AuthProvider(props: Props) {
         const user: User | null = await authService.userSignUp(data);
         if(user) {
             dispatch({
-                type: "signupSuccess",
+                type: "signUpSuccess",
                 payload: user,
             });
         } else {
             dispatch({
-                type: "signupError",
+                type: "signUpError",
                 payload: null
             })
         }
@@ -60,12 +60,12 @@ export default function AuthProvider(props: Props) {
         const user: User | null = await authService.userSignIn(data);
         if(user) {
             dispatch({
-                type: "signinSuccess",
+                type: "signInSuccess",
                 payload: user,
             });
         } else {
             dispatch({
-                type: "signinError",
+                type: "signInError",
                 payload: null
             })
         }
@@ -110,14 +110,14 @@ function authReducer(state: State, action: Action) {
     switch(action.type) {
 
         // SIGN UP
-        case "signupSuccess": {
+        case "signUpSuccess": {
             return {
                 ...state,
                 user: action.payload
             };
         }
 
-        case "signupError": {
+        case "signUpError": {
             return {
                 ...state,
                 user: null
@@ -125,11 +125,11 @@ function authReducer(state: State, action: Action) {
         }
 
         // SIGN IN
-        case "signinSuccess": {
+        case "signInSuccess": {
             return state;
         }
 
-        case "signinError": {
+        case "signInError": {
             return state;
         }
 
