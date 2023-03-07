@@ -46,10 +46,22 @@ export const authService = {
         try {
             signOut(auth);
             return true;
-            
+
         } catch(error: any) {
             const code = error.code;
             const message = error.message;
+            return false;
+        }
+    },
+
+    userAutoSignIn() {
+        const auth = getAuth();
+        const user = auth.currentUser;
+
+        if(user) {
+            return user;
+
+        } else {
             return false;
         }
     }

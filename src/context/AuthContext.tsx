@@ -9,7 +9,7 @@ type AuthTypes = {
     signUpReq: (data: { email: string; password: string; }) => void;
     signInReq: (data: { email: string; password: string; }) => void;
     signOutReq: () => void;
-    autoLoginReq: () => void;
+    autoSignInReq: () => void;
 }
 
 type Props = {
@@ -41,6 +41,7 @@ export const useAuth = () => useContext(AccountContext);
 export default function AuthProvider(props: Props) {
     const [auth, dispatch] = useReducer(authReducer, initialState);
 
+
     async function signUpReq(data: { email: string; password: string; }) {
         const user: User | null = await authService.userSignUp(data);
         if(user) {
@@ -55,6 +56,7 @@ export default function AuthProvider(props: Props) {
             })
         }
     }
+
 
     async function signInReq(data: { email: string; password: string; }) {
         const user: User | null = await authService.userSignIn(data);
@@ -71,6 +73,7 @@ export default function AuthProvider(props: Props) {
         }
     }
 
+
     async function signOutReq() {
         const signOutSuccess: boolean = await authService.userSignOut();
         if(signOutSuccess) {
@@ -86,9 +89,18 @@ export default function AuthProvider(props: Props) {
         }
     }
 
-    async function autoLoginReq() {
-        console.log("autologin");
+
+    async function autoSignInReq() {
+        const user = authService.userAutoSignIn();
+
+        if(user) {
+            dispatch({
+                type: "autoSignInSuccess",
+                payload: user
+            })
+        }
     }
+
 
     return (
 
@@ -97,7 +109,7 @@ export default function AuthProvider(props: Props) {
             signUpReq,
             signInReq,
             signOutReq,
-            autoLoginReq
+            autoSignInReq
         }}>
             {props.children}
         </AccountContext.Provider>
@@ -126,29 +138,39 @@ function authReducer(state: State, action: Action) {
 
         // SIGN IN
         case "signInSuccess": {
-            return state;
+            return {
+                ...state,
+                user: action.payload
+            };
         }
 
         case "signInError": {
-            return state;
+            return {
+                ...state,
+                user: null
+            };
         }
 
         // SIGN OUT
         case "signOutSuccess": {
-            return state;
+            return {
+                ...state,
+                user: null
+            };
         }
 
         case "signOutError": {
-            return state;
+            return {
+                ...state
+            };
         }
 
-        // AUTO LOGIN
-        case "autoLoginSuccess": {
-            return state;
-        }
-
-        case "autoLoginError": {
-            return state;
+        // AUTO SIGN IN
+        case "autoSignInSuccess": {
+            return {
+                ...state,
+                user: action.payload
+            };
         }
 
 
