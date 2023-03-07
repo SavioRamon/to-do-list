@@ -6,8 +6,8 @@ type AuthTypes = {
     user: User | null;
     load: boolean;
     error: boolean;
-    signUpReq: (data: {email: string; password: string;}) => void;
-    loginReq: () => void;
+    signUpReq: (data: { email: string; password: string; }) => void;
+    loginReq: (data: { email: string; password: string; }) => void;
     logoutReq: () => void;
     autoLoginReq: () => void;
 }
@@ -56,8 +56,19 @@ export default function AuthProvider(props: Props) {
         }
     }
 
-    async function loginReq() {
-        console.log("login");
+    async function loginReq(data: { email: string; password: string; }) {
+        const user: User | null = await authService.userLogin(data);
+        if(user) {
+            dispatch({
+                type: "loginSuccess",
+                payload: user,
+            });
+        } else {
+            dispatch({
+                type: "loginError",
+                payload: null
+            })
+        }
     }
 
     async function logoutReq() {
