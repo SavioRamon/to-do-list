@@ -41,8 +41,24 @@ export const useAuth = () => useContext(AccountContext);
 export default function AuthProvider(props: Props) {
     const [auth, dispatch] = useReducer(authReducer, initialState);
 
+    function toggleLoadToTrue() {
+        dispatch({
+            type: "setLoad",
+            payload: true
+        })
+    }
+
+    function toggleLoadToFalse() {
+        dispatch({
+            type: "setLoad",
+            payload: false
+        })
+    }
 
     async function signUpReq(data: { email: string; password: string; }) {
+
+        toggleLoadToTrue();
+
         const user: User | null = await authService.userSignUp(data);
         if(user) {
             dispatch({
@@ -55,10 +71,15 @@ export default function AuthProvider(props: Props) {
                 payload: null
             })
         }
+
+        toggleLoadToFalse();
     }
 
 
     async function signInReq(data: { email: string; password: string; }) {
+
+        toggleLoadToTrue();
+
         const user: User | null = await authService.userSignIn(data);
         if(user) {
             dispatch({
@@ -71,10 +92,15 @@ export default function AuthProvider(props: Props) {
                 payload: null
             })
         }
+
+        toggleLoadToFalse();
     }
 
 
     async function signOutReq() {
+
+        toggleLoadToTrue();
+
         const signOutSuccess: boolean = await authService.userSignOut();
         if(signOutSuccess) {
             dispatch({
@@ -87,18 +113,24 @@ export default function AuthProvider(props: Props) {
                 payload: null
             })
         }
+
+        toggleLoadToFalse();
     }
 
 
     async function autoSignInReq() {
-        const user = authService.userAutoSignIn();
 
+        toggleLoadToTrue();
+        const user = authService.userAutoSignIn();
         if(user) {
+
             dispatch({
                 type: "autoSignInSuccess",
                 payload: user
             })
         }
+
+        toggleLoadToFalse();
     }
 
 
@@ -171,6 +203,13 @@ function authReducer(state: State, action: Action) {
                 ...state,
                 user: action.payload
             };
+        }
+
+        case "setLoad": {
+            return {
+                ...state,
+                load: action.payload
+            }
         }
 
 
