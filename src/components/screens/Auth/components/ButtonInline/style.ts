@@ -12,7 +12,7 @@ export const Span = styled.span`
     )}
 `;
 
-export const InlineButton = styled.button`
+export const InlineButton = styled.input`
     font-size: inherit;
     border: none;
     color: ${({theme}) => theme.cyan100};

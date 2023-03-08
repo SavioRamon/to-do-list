@@ -12,9 +12,7 @@ export default function ButtonInline(props: Props) {
     return (
         <Span center={props.center}>
             {props.text}
-            <InlineButton onClick={props.action}>
-                {props.children}
-            </InlineButton>
+            <InlineButton type="button" onClick={props.action} value={props.children} />
         </Span>
     );
 }
