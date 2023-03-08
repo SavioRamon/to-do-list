@@ -121,9 +121,10 @@ export default function AuthProvider(props: Props) {
     async function autoSignInReq() {
 
         toggleLoadToTrue();
-        const user = authService.userAutoSignIn();
-        if(user) {
 
+        const user = await authService.userAutoSignIn();
+        
+        if(user) {
             dispatch({
                 type: "autoSignInSuccess",
                 payload: user

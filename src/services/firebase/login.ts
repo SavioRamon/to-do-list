@@ -3,7 +3,8 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    onAuthStateChanged
 } from "firebase/auth";
 
 import { app } from ".";
@@ -55,14 +56,13 @@ export const authService = {
     },
 
     userAutoSignIn() {
-        const auth = getAuth();
-        const user = auth.currentUser;
 
-        if(user) {
-            return user;
+        return new Promise((resolve) => {
+            const unsubscribe = onAuthStateChanged(auth, (user) => {
+                resolve(user);
+            });
 
-        } else {
-            return false;
-        }
+            unsubscribe();
+        })
     }
 }
