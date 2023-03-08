@@ -1,6 +1,7 @@
 
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../../context/AuthContext";
 import { ROUTES } from "../../../../../utils/CONSTANTS";
 import Button from "../Button";
 import ButtonInline from "../ButtonInline";
@@ -10,12 +11,24 @@ import TopContent from "../TopContent";
 
 
 export default function LoginComponent() {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const { signInReq } = useAuth();
     const navigate = useNavigate();
     const { REGISTER, AUTH } = ROUTES;
+
 
     function redirectUser(route: string) {
         navigate(`/${AUTH}/${route}`);
     }
+
+    
+    function signIn() {
+        signInReq({ email, password });
+    }
+
 
     return (
         <Fragment>
@@ -24,15 +37,25 @@ export default function LoginComponent() {
             </TopContent>
             <Form>
                 <Fragment>
-                    <Input type="email" placeholder="put your email..." title="Email" />
+                    <Input
+                        type="email"
+                        placeholder="put your email..."
+                        title="Email"
+                        change={setEmail}
+                    />
 
-                    <Input type="password" placeholder="put your password..." title="Password" />
+                    <Input
+                        type="password"
+                        placeholder="put your password..."
+                        title="Password"
+                        change={setPassword}
+                    />
 
                     <ButtonInline text="" action={() => {console.log("test")}}>
                         Forgot your password?
                     </ButtonInline>
 
-                    <Button>
+                    <Button action={signIn}>
                         LOGIN
                     </Button>
 

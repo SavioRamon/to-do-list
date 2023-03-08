@@ -1,3 +1,4 @@
+import type React from "react";
 import { InputWrapper, LabelWrapper } from "./style";
 
 
@@ -5,6 +6,7 @@ type Props = {
     type: string;
     placeholder: string;
     title: string;
+    change: React.Dispatch<React.SetStateAction<string>>
 }
 
 export default function Input(props: Props) {
@@ -14,6 +16,7 @@ export default function Input(props: Props) {
             <InputWrapper
                 type={props.type}
                 placeholder={props.placeholder}
+                onChange={(e) => {props.change(e.target.value)}}
             >
 
             </InputWrapper>

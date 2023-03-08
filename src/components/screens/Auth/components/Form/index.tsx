@@ -6,7 +6,7 @@ type Props = {
 
 export default function Form(props: Props) {
     return (
-        <FormWrapper>
+        <FormWrapper onSubmit={(e) => e.preventDefault()}>
             {props.children}
         </FormWrapper>
     );
