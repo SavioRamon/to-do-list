@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 import { ROUTES } from "../../../utils/CONSTANTS";
 import { Container, Wrapper } from "./style";
 
 export default function Auth() {
 
+    const { user } = useAuth();
     const navigate = useNavigate();
 
 
@@ -17,6 +19,12 @@ export default function Auth() {
             navigate(`${LOGIN}`);
         }
     }, []);
+
+    useLayoutEffect(() => {
+        if(user) {
+            navigate("/");
+        }
+    }, [user]);
 
     return (
         <Container>
