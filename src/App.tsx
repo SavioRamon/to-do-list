@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { Container } from "./app.style";
+import { Container, Wrapper } from "./app.style";
+import Header from "./components/common/Header";
 import { useAuth } from "./context/AuthContext";
 import { GlobalStyle } from "./globalStyle";
 
@@ -16,8 +17,12 @@ export default function App() {
 	return (
 		<Container>
 			<GlobalStyle />
-			
-			<Outlet />
+
+			<Header />
+
+			<Wrapper>
+				<Outlet />
+			</Wrapper>
 		</Container>
 	)
 }

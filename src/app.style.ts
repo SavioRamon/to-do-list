@@ -8,3 +8,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
 `;
+
+export const Wrapper = styled.div`
+    margin-top: calc(3rem + 3vw);
+`;
