@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 
 import { app } from ".";
+import { userCustomizations } from "./userCustomizations";
 
 const auth = getAuth(app);
 
@@ -21,6 +22,9 @@ export const authService = {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
+
+            userCustomizations.setDefaultUserIcon(user);
+
             return user;
 
         } catch(error: any) {
