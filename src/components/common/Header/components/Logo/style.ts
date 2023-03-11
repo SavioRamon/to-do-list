@@ -14,7 +14,6 @@ export const Button = styled.button`
 `;
 
 export const ImageLogo = styled.img`
-    margin-left: calc(1rem + 1vw);
     width: calc(5rem + 6vw);
     height: 100%;
     background-color: inherit;
