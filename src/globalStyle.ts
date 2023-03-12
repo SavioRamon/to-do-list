@@ -7,11 +7,11 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         font-family: "Roboto", "sans-serif";
-        background-color: ${({theme}) => theme.backgroundColor};
-        color: ${({theme}) => theme.textColor};
     }
 
     html {
         font-size: 10px;
+        background-color: ${({theme}) => theme.backgroundColor};
+        color: ${({theme}) => theme.textColor};
     }
 `;
