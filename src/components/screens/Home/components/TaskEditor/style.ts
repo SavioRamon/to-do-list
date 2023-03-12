@@ -41,9 +41,17 @@ export const ContentTitle = styled.h2`
 
 export const InputWrapper = styled.label`
     margin: calc(1.5rem + 1.2vw) 0;
+    padding: calc(.6rem + .5vw);
     display: flex;
     flex-direction: column;
-    cursor: text;
+    border: .1vw solid transparent;
+    border-left: .1vw solid ${({theme}) => theme.cyan800};
+    border-radius: calc(.6rem + .5vw);
+    :focus-within {
+        border-color: ${({theme}) => theme.cyan800};
+    }
+
+    transition: border-color ease .2s;
 `;
 
 
@@ -51,6 +59,7 @@ export const InputName = styled.span`
     margin-bottom: calc(.2rem + .2vw);
     font-size: calc(.8rem + .6vw);
     opacity: .8;
+    cursor: pointer;
 `;
 
 
