@@ -6,6 +6,7 @@ export const InputWrapper = styled.input`
     border: none;
     outline: none;
     background-color: inherit;
+    color: inherit;
 `;
 
 

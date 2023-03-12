@@ -18,6 +18,7 @@ export const InlineButton = styled.input`
     color: ${({theme}) => theme.cyan100};
     cursor: pointer;
     text-indent: .4em;
+    background-color: inherit;
     :hover {
         text-decoration: underline;
     }
