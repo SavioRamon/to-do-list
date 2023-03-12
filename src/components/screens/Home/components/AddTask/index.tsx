@@ -1,9 +1,14 @@
 import { Content } from "./style";
 import { AiOutlinePlus } from "react-icons/ai";
 
-export default function AddTask() {
+
+type Props = {
+    action: () => void;
+}
+
+export default function AddTask(props: Props) {
     return (
-        <Content>
+        <Content onClick={props.action}>
             <AiOutlinePlus />
         </Content>
     );
