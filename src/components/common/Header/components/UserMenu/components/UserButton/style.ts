@@ -6,6 +6,7 @@ export const Button = styled.button`
     align-items: center;
     border: none;
     cursor: pointer;
+    background-color: inherit;
 
 `;
 
