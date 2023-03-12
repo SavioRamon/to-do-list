@@ -6,7 +6,6 @@ export const Content = styled.header`
     height: calc(3rem + 3vw);
     position: fixed;
     top: 0;
-    background-color: ${({theme}) => theme.backgroundColor};
     display: flex;
     align-items: center;
     justify-content: space-between;
