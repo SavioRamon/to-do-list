@@ -7,4 +7,6 @@ export const MenuContent = styled.div`
     background-color: ${({theme}) => theme.backgroundSecondary};
     position: absolute;
     border-radius: 10%;
+    display: flex;
+    flex-direction: column;
 `;
