@@ -8,6 +8,7 @@ export const Button = styled.button`
     font-size: calc(1rem + .8vw);
     cursor: pointer;
     border-radius: 10%;
+    color: inherit;
     :hover {
         background-color: ${({theme}) => theme.backgroundSecondary};
     }
