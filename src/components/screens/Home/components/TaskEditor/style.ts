@@ -30,6 +30,7 @@ export const TaskManager = styled.div`
     padding: calc(.8rem + .7vw);
     background-color: ${({theme}) => theme.backgroundSecondary};
     border-radius: calc(1rem + .7vw);
+    position: relative;
 `;
 
 
@@ -79,4 +80,30 @@ export const TextArea = styled.textarea`
     background-color: inherit;
     color: ${({theme}) => theme.textColor};
     resize: none;
+`;
+
+
+export const CloseContent = styled.button`
+    @keyframes spin {
+        from {
+            transform: rotate(0);
+        }
+        to {
+            transform: rotate(90deg);
+        }
+    }
+    font-size: calc(2rem + 1.4vw);
+    position: absolute;
+    top: calc(.6rem + .5vw);
+    right: calc(.6rem + .5vw);
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+    display: flex;
+    color: inherit;
+    border-radius: 50%;
+
+    :hover {
+        animation: spin normal .3s;
+    }
 `;

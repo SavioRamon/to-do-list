@@ -6,8 +6,11 @@ import {
     TaskTitleInput,
     InputWrapper,
     InputName,
-    TextArea
+    TextArea,
+    CloseContent
 } from "./style";
+
+import { MdOutlineClose } from "react-icons/md";
 
 
 type Props = {
@@ -25,6 +28,10 @@ export default function TaskEditor(props: Props) {
 
             <TaskManager>
                 <ContentTitle>{ props.title }</ContentTitle>
+
+                <CloseContent onClick={props.closeContent}>
+                    <MdOutlineClose />
+                </CloseContent>
 
 
                 <InputWrapper>
