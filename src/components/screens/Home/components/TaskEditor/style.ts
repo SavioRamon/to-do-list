@@ -17,8 +17,8 @@ export const ShadowScreenButton = styled.button`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: ${({theme}) => theme.backgroundColor};
-    opacity: .8;
+    background-color: ${({theme}) => theme.gray};
+    opacity: .4;
     border: none;
     cursor: pointer;
 `;
