@@ -102,8 +102,10 @@ export const CloseContent = styled.button`
     display: flex;
     color: inherit;
     border-radius: 50%;
+    transition: color ease .4s;
 
-    :hover {
+    :hover, :focus {
         animation: spin normal .3s;
+        color: ${({theme}) => theme.cyan800};
     }
 `;
